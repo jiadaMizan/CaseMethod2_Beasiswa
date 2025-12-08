@@ -6,5 +6,6 @@ public class CM_Beasiswa {
 
         System.out.println("tes");
 
+        input.close();
     }
 }

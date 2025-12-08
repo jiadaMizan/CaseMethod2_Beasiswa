@@ -100,7 +100,7 @@ public class CM_Beasiswa {
 
         if (data.length==0) {
             System.out.println("Belum ada pendaftar");
-
+            return;
         }
 
         System.out.printf("%-3s %-20s %-12s %-6s %-12s %-15s\n",
@@ -128,7 +128,7 @@ public class CM_Beasiswa {
                     tambahDataPendaftar();
                     break;
                 case 2:
-                    System.out.println("Menampilkan seluruh data pendaftar");
+                    tampilkanDataPendaftaran();
                     break;
                 case 3:
                     System.out.println("Menghitung Rata-rata IPK per Jenis Beasiswa");

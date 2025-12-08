@@ -119,6 +119,10 @@ public class CM_Beasiswa {
         System.out.println();
     }
 
+        static void cariPendaftarBeasiswa() {
+            System.out.print("\nMasukkan jenis beasiswa yang dicari (Reguler/Unggulan/Riset): ");
+            String jenis = sc.nextLine().trim();
+        }
     public static void main(String[] args) {
 
         do {

@@ -6,34 +6,76 @@ public class CM_Beasiswa {
     static String[][] data = new String[0][5];
     static int pilihan;
 
+
     static void menu() {
-        System.out.println("=== Sistem Pendaftaran Beasiswa ===");
-        System.out.println("1. Tambah Data Pendaftar Beasiswa");
-        System.out.println("2. Tampilkan Semua Pendaftar Beasiswa");
-        System.out.println("4. Cari Pendaftar Beasiswa berdasarkan Jenis Beasiswa");
-        System.out.println("3. Hitung Rata-rata IPK per Jenis Beasiswa");
-        System.out.println("5. Exit");
-        System.out.println("==============================================================");
-        System.out.print("Masukkan pilihan Anda (1-5): ");
+        System.out.println("\n=== SISTEM PENDAFTARAN BEASISWA AKADEMIK ===");
+        System.out.println("1. Tambah data pendaftar");
+        System.out.println("2. Tampilkan seluruh data pendaftar");
+        System.out.println("3. Cari pendaftar berdasarkan jenis beasiswa");
+        System.out.println("4. Hitung rata-rata IPK per jenis beasiswa");
+        System.out.println("5. Keluar");
+        System.out.println("=============================================");
+        System.out.print("Pilih menu [1-5]: ");
         pilihan = sc.nextInt();
         sc.nextLine(); // Clear newline
     }
 
     static void tambahDataPendaftar() {
-        System.out.print("Masukkan Nama: ");
-        String nama = sc.nextLine();
+        System.out.println("\n=== Tambah Data Pendaftar Beasiswa ===");
 
-        System.out.print("Masukkan NIM: ");
-        String nim = sc.nextLine();
+        System.out.print("Nama mahasiswa        : ");
+        String nama = sc.nextLine().trim();
+        while (nama.isEmpty()) {
+            System.out.print("Nama tidak boleh kosong. Masukkan lagi: ");
+            nama = sc.nextLine().trim();
+        }
 
-        System.out.print("Masukkan IPK: ");
-        String ipk = sc.nextLine();
+        System.out.print("NIM mahasiswa         : ");
+        long nim = sc.nextLong();
+        sc.nextLine(); // Clear newline
 
-        System.out.print("Masukkan Jenis Beasiswa: ");
-        String jenisBeasiswa = sc.nextLine();
+        double ipk = 0;
+        boolean validIPK = false;
+        while (!validIPK) {
+            System.out.print("IPK Terakhir          : ");
+            ipk = sc.nextDouble();
+            sc.nextLine(); // Clear newline
+            if (ipk >= 0 && ipk <= 4.0) {
+                validIPK = true;
+            } else {
+                System.out.println("IPK harus antara 0.00 - 4.00!");
+            }
+        }
 
-        System.out.print("Masukkan Penghasilan Orang Tua: ");
-        String penghasilan = sc.nextLine();
+        String jenisBeasiswa = "";
+        boolean validJenis = false;
+        while (!validJenis) {
+            System.out.print("Jenis Beasiswa (Reguler/Unggulan/Riset): ");
+            jenisBeasiswa = sc.nextLine().trim();
+
+            if (jenisBeasiswa.equalsIgnoreCase("Reguler") ||
+                jenisBeasiswa.equalsIgnoreCase("Unggulan") ||
+                jenisBeasiswa.equalsIgnoreCase("Riset")) {
+                jenisBeasiswa = jenisBeasiswa.substring(0, 1).toUpperCase() +
+                                jenisBeasiswa.substring(1).toLowerCase();
+                validJenis = true;
+            } else {
+                System.out.println("Jenis beasiswa hanya boleh: Reguler, Unggulan, atau Riset!");
+            }
+        }
+
+        long penghasilan = 0;
+        boolean validPenghasilan = false;
+        while (!validPenghasilan) {
+            System.out.println("Penghasilan orang tua  (Rp): ");
+            penghasilan = sc.nextLong();
+            sc.nextLine(); // Clear newline
+            if (penghasilan >= 0 && penghasilan <= 2000000) {
+                validPenghasilan = true;
+            } else {
+                System.out.println("Penghasilan orang tua maksimal Rp 2.000.000!");
+            }
+        }
 
         String[][] newData = new String[data.length + 1][5];
 
@@ -42,19 +84,18 @@ public class CM_Beasiswa {
                 newData[i][j] = data[i][j];
             }
         }
-
         newData[data.length][0] = nama;
-        newData[data.length][1] = nim;
-        newData[data.length][2] = ipk;
+        newData[data.length][1] = String.valueOf(nim);
+        newData[data.length][2] = String.valueOf(ipk);
         newData[data.length][3] = jenisBeasiswa;
-        newData[data.length][4] = penghasilan;
+        newData[data.length][4] = String.valueOf(penghasilan);
 
         data = newData;
-
-        System.out.println("Data berhasil ditambahkan!\n");
+        System.out.println("\nData berhasil ditambahkan!\n");
     }
 
     public static void main(String[] args) {
+
         do {
             menu();
             switch (pilihan) {
@@ -62,7 +103,7 @@ public class CM_Beasiswa {
                     tambahDataPendaftar();
                     break;
                 case 2:
-                    System.out.println("Menampilkan Semua Pendaftar Beasiswa");
+                    System.out.println("Menampilkan seluruh data pendaftar");
                     break;
                 case 3:
                     System.out.println("Menghitung Rata-rata IPK per Jenis Beasiswa");

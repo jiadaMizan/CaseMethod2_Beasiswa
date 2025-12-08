@@ -5,6 +5,18 @@ public class CM_Beasiswa {
 
     static int pilihan;
 
+    
+    static void menu() {
+        System.out.println("=== Sistem Pendaftaran Beasiswa ===");
+        System.out.println("1. Tambah Data Pendaftar Beasiswa");
+        System.out.println("2. Tampilkan Semua Pendaftar Beasiswa");
+        System.out.println("4. Cari Pendaftar Beasiswa berdasarkan Jenis Beasiswa");
+        System.out.println("3. Hitung Rata-rata IPK per Jenis Beasiswa");
+        System.out.println("5. Exit");
+        System.out.println("==============================================================");
+        System.out.print("Masukkan pilihan Anda: (1-5)");
+        pilihan = sc.nextInt();
+    }
     public static void main(String[] args) {
         do {
             menu();
@@ -28,17 +40,5 @@ public class CM_Beasiswa {
                     System.out.println("Pilihan tidak valid. Silakan coba lagi.");
             }
         } while (pilihan != 5);
-    }
-
-    static void menu() {
-        System.out.println("=== Sistem Pendaftaran Beasiswa ===");
-        System.out.println("1. Tambah Data Pendaftar Beasiswa");
-        System.out.println("2. Tampilkan Semua Pendaftar Beasiswa");
-        System.out.println("4. Cari Pendaftar Beasiswa berdasarkan Jenis Beasiswa");
-        System.out.println("3. Hitung Rata-rata IPK per Jenis Beasiswa");
-        System.out.println("5. Exit");
-        System.out.println("==============================================================");
-        System.out.print("Masukkan pilihan Anda: (1-5)");
-        pilihan = sc.nextInt();
     }
 }

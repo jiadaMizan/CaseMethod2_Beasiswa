@@ -19,7 +19,7 @@ public class CM_Beasiswa {
         pilihan = sc.nextInt();
         sc.nextLine(); // Clear newline
     }
-
+    
     static void tambahDataPendaftar() {
         System.out.println("\n=== Tambah Data Pendaftar Beasiswa ===");
 
@@ -67,7 +67,7 @@ public class CM_Beasiswa {
         long penghasilan = 0;
         boolean validPenghasilan = false;
         while (!validPenghasilan) {
-            System.out.println("Penghasilan orang tua  (Rp): ");
+            System.out.print("Penghasilan orang tua  (Rp): ");
             penghasilan = sc.nextLong();
             sc.nextLine(); // Clear newline
             if (penghasilan >= 0 && penghasilan <= 2000000) {
@@ -94,6 +94,31 @@ public class CM_Beasiswa {
         System.out.println("\nData berhasil ditambahkan!\n");
     }
 
+    static void tampilkanDataPendaftaran() {
+
+        System.out.println("\n===DAFTAR SELURUH DATA PENDAFTAR===");
+
+        if (data.length==0) {
+            System.out.println("Belum ada pendaftar");
+
+        }
+
+        System.out.printf("%-3s %-20s %-12s %-6s %-12s %-15s\n",
+        "No", "Nama", "NIM", "IPK", "Beasiswa", "Penghasilan");
+
+        for (int i = 0; i < data.length; i++) {
+            System.out.printf("%-3d %-20s %-12s %-6s %-12s %-15s\n",
+            (i + 1),
+            data[i][0],
+            data[i][1],
+            data[i][2],
+            data[i][3],
+            data[i][4]);
+        }
+
+        System.out.println();
+    }
+
     public static void main(String[] args) {
 
         do {
@@ -112,7 +137,7 @@ public class CM_Beasiswa {
                     System.out.println("Mencari Pendaftar Beasiswa berdasarkan Jenis Beasiswa");
                     break;
                 case 5:
-                    System.out.println("Exiting the program.");
+                    System.out.println("Terimakasih telah menggunakan program");
                     break;
                 default:
                     System.out.println("Pilihan tidak valid. Silakan coba lagi.");

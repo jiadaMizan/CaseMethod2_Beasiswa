@@ -122,6 +122,23 @@ public class CM_Beasiswa {
         static void cariPendaftarBeasiswa() {
             System.out.print("\nMasukkan jenis beasiswa yang dicari (Reguler/Unggulan/Riset): ");
             String jenis = sc.nextLine().trim();
+
+            jenis = jenis.substring(0,1).toUpperCase() + jenis.substring(1).toLowerCase();
+        
+        boolean ditemukan = false;
+
+        for (int i = 0; i < data.length; i++) {
+            if (data[i][3].equalsIgnoreCase(jenis)) {
+                ditemukan = true;
+                break;
+                }
+            }
+        
+        if (!ditemukan) {
+            System.out.println("Tidak ada pendaftar dengan beasiswa: " + jenis);
+            return;
+        }
+
         }
     public static void main(String[] args) {
 

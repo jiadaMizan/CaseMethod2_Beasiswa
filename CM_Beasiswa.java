@@ -1,11 +1,10 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CM_Beasiswa {
     static Scanner sc = new Scanner(System.in);
 
     static String[][] data = new String[0][5];
-    static int pilihan;
-
 
     static void menu() {
         System.out.println("\n=== SISTEM PENDAFTARAN BEASISWA AKADEMIK ===");
@@ -16,10 +15,8 @@ public class CM_Beasiswa {
         System.out.println("5. Keluar");
         System.out.println("=============================================");
         System.out.print("Pilih menu [1-5]: ");
-        pilihan = sc.nextInt();
-        sc.nextLine(); // Clear newline
     }
-    
+
     static void tambahDataPendaftar() {
         System.out.println("\n=== Tambah Data Pendaftar Beasiswa ===");
 
@@ -30,9 +27,23 @@ public class CM_Beasiswa {
             nama = sc.nextLine().trim();
         }
 
-        System.out.print("NIM mahasiswa         : ");
-        long nim = sc.nextLong();
-        sc.nextLine(); // Clear newline
+        long nim = 0;
+        boolean validNIM = false;
+        while (!validNIM) {
+            try {
+                System.out.print("NIM mahasiswa         : ");
+                nim = sc.nextLong();
+                sc.nextLine(); // Clear newline
+                if (String.valueOf(nim).length() == 12) {
+                    validNIM = true;
+                } else {
+                    System.out.println("NIM harus 12 digit!");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("NIM harus berupa angka!");
+                sc.nextLine(); // Clear invalid input
+            }
+        }
 
         double ipk = 0;
         boolean validIPK = false;
@@ -135,7 +146,7 @@ public class CM_Beasiswa {
                 if (data[i][3].equalsIgnoreCase(jenis)){
                     ditemukan = true;
                     System.out.printf("%-3d ", nomor++);
-                    
+
                     for (int j = 0; j < 5; j++){
                         if (j == 0){
                             System.out.printf("%-20s ", data[i][j]);
@@ -157,9 +168,12 @@ public class CM_Beasiswa {
             }
         }
     public static void main(String[] args) {
+        int pilihan;
 
         do {
             menu();
+            pilihan = sc.nextInt();
+            sc.nextLine(); // Clear newline
             switch (pilihan) {
                 case 1:
                     tambahDataPendaftar();
@@ -168,10 +182,10 @@ public class CM_Beasiswa {
                     tampilkanDataPendaftaran();
                     break;
                 case 3:
-                    System.out.println("Menghitung Rata-rata IPK per Jenis Beasiswa");
+                    System.out.println("Mencari Pendaftar Beasiswa berdasarkan Jenis Beasiswa");
                     break;
                 case 4:
-                    System.out.println("Mencari Pendaftar Beasiswa berdasarkan Jenis Beasiswa");
+                    System.out.println("Menghitung Rata-rata IPK per Jenis Beasiswa");
                     break;
                 case 5:
                     System.out.println("Terimakasih telah menggunakan program");

@@ -124,21 +124,37 @@ public class CM_Beasiswa {
             String jenis = sc.nextLine().trim();
 
             jenis = jenis.substring(0,1).toUpperCase() + jenis.substring(1).toLowerCase();
-        
-        boolean ditemukan = false;
 
-        for (int i = 0; i < data.length; i++) {
-            if (data[i][3].equalsIgnoreCase(jenis)) {
-                ditemukan = true;
-                break;
+            System.out.println("\n=== Hasil Pencarian Pendaftar Beasiswa ===");
+            System.out.printf("%-3s %-20s %-12s %-6s %-12s %-15s\n", "No","Nama","NIM", "IPK", "Beasiswa", "Penghasilan" );
+
+            int nomor = 1;
+            boolean ditemukan = false;
+
+            for (int i = 0; i < data.length; i++){
+                if (data[i][3].equalsIgnoreCase(jenis)){
+                    ditemukan = true;
+                    System.out.printf("%-3d ", nomor++);
+                    
+                    for (int j = 0; j < 5; j++){
+                        if (j == 0){
+                            System.out.printf("%-20s ", data[i][j]);
+                        }else if (j == 1) {
+                            System.out.printf("%-12s ", data[i][j]);
+                        }else if (j == 2) {
+                            System.out.printf("%-6s ", data[i][j]);
+                        }else if (j == 3) {
+                            System.out.printf("%-12s ", data[i][j]);
+                        }else if (j == 4) {
+                            System.out.printf("%-15s ", data[i][j]);
+                        }
+                    }
+                    System.out.println();
                 }
             }
-        
-        if (!ditemukan) {
-            System.out.println("Tidak ada pendaftar dengan beasiswa: " + jenis);
-            return;
-        }
-
+            if (!ditemukan){
+                System.out.println("Tidak ada pendaftar dengan beasiswa " + jenis);
+            }
         }
     public static void main(String[] args) {
 

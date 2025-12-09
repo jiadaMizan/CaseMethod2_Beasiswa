@@ -167,6 +167,55 @@ public class CM_Beasiswa {
                 System.out.println("Tidak ada pendaftar dengan beasiswa " + jenis);
             }
         }
+
+        static void hitungRataIPK() {
+            if (data.length == 0) {
+                System.out.println("\nBelum ada pendaftar!");
+            }
+
+            double totalReguler =0, totalUnggulan = 0, totalRiset = 0;
+            int countReguler = 0, countUnggulan = 0, countRiset = 0;
+
+            for (int i=0; i < data.length; i++){
+                String jenis = data[i][3];
+                double ipk = Double.parseDouble(data[i][2]);
+
+                if (jenis.equalsIgnoreCase("Reguler")){
+                    totalReguler += ipk;
+                    countReguler++;
+                }else if (jenis.equalsIgnoreCase("Unggulan")){
+                    totalUnggulan += ipk;
+                    countUnggulan++;
+                }else if (jenis.equalsIgnoreCase("Riset")){
+                    totalRiset += ipk;
+                    countRiset++;
+                }
+            }
+
+            System.out.println("\n=== Rata-rata IPK per Jenis Beasiswa ===");
+
+            if (countReguler > 0){
+                double rataReguler = totalReguler/countReguler;
+                System.out.printf("Reguler : rata-rata IPK = %.2f\n", rataReguler);
+            }else {
+                System.out.println("Reguler: tidak ada pendaftar");
+            }
+
+            if (countUnggulan > 0) {
+                double rataUnggulan = totalUnggulan/countUnggulan;
+                System.out.printf("Unggulan : rata-rata IPK = %.2f\n", rataUnggulan);
+            }else {
+                System.out.println("Unggulan : tidak ada pendaftar");
+            }
+
+            if (countRiset > 0) {
+                double rataRiset = totalRiset/countRiset;
+                System.out.printf("Riset : rata-rata IPK = %.2f\n", rataRiset);
+            }else {
+                System.out.println("Riset : tidak ada pendaftar");
+            }
+            System.out.println();
+        }
     public static void main(String[] args) {
         int pilihan;
 
@@ -182,10 +231,10 @@ public class CM_Beasiswa {
                     tampilkanDataPendaftaran();
                     break;
                 case 3:
-                    System.out.println("Mencari Pendaftar Beasiswa berdasarkan Jenis Beasiswa");
+                    cariPendaftarBeasiswa();
                     break;
                 case 4:
-                    System.out.println("Menghitung Rata-rata IPK per Jenis Beasiswa");
+                    hitungRataIPK();
                     break;
                 case 5:
                     System.out.println("Terimakasih telah menggunakan program");

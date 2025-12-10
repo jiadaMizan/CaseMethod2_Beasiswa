@@ -48,13 +48,20 @@ public class CM_Beasiswa {
         double ipk = 0;
         boolean validIPK = false;
         while (!validIPK) {
-            System.out.print("IPK Terakhir          : ");
-            ipk = sc.nextDouble();
-            sc.nextLine(); // Clear newline
-            if (ipk >= 0 && ipk <= 4.0) {
-                validIPK = true;
-            } else {
-                System.out.println("IPK harus antara 0.00 - 4.00!");
+            try {
+                System.out.print("IPK Terakhir          : ");
+                ipk = sc.nextDouble();
+                sc.nextLine(); // Clear newline
+
+                if (ipk >= 0 && ipk <= 4.0) {
+                    validIPK = true;
+                } else {
+                    System.out.println("IPK harus antara 0.00 - 4.00!");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("IPK harus berupa angka desimal!");
+                sc.nextLine(); // Clear invalid input
             }
         }
 
@@ -78,13 +85,20 @@ public class CM_Beasiswa {
         long penghasilan = 0;
         boolean validPenghasilan = false;
         while (!validPenghasilan) {
-            System.out.print("Penghasilan orang tua  (Rp): ");
-            penghasilan = sc.nextLong();
-            sc.nextLine(); // Clear newline
-            if (penghasilan >= 0 && penghasilan <= 2000000) {
-                validPenghasilan = true;
-            } else {
-                System.out.println("Penghasilan orang tua maksimal Rp 2.000.000!");
+            try {
+                System.out.print("Penghasilan orang tua  (Rp): ");
+                penghasilan = sc.nextLong();
+                sc.nextLine();
+
+                if (penghasilan >= 0 && penghasilan <= 2000000) {
+                    validPenghasilan = true;
+                } else {
+                    System.out.println("Penghasilan orang tua maksimal Rp 2.000.000!");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Penghasilan harus berupa angka!");
+                sc.nextLine(); // Clear invalid input
             }
         }
 
@@ -196,9 +210,9 @@ public class CM_Beasiswa {
 
             if (countReguler > 0){
                 double rataReguler = totalReguler/countReguler;
-                System.out.printf("Reguler : rata-rata IPK = %.2f\n", rataReguler);
+                System.out.printf("Reguler  : rata-rata IPK = %.2f\n", rataReguler);
             }else {
-                System.out.println("Reguler: tidak ada pendaftar");
+                System.out.println("Reguler  : tidak ada pendaftar");
             }
 
             if (countUnggulan > 0) {
@@ -210,9 +224,9 @@ public class CM_Beasiswa {
 
             if (countRiset > 0) {
                 double rataRiset = totalRiset/countRiset;
-                System.out.printf("Riset : rata-rata IPK = %.2f\n", rataRiset);
+                System.out.printf("Riset    : rata-rata IPK = %.2f\n", rataRiset);
             }else {
-                System.out.println("Riset : tidak ada pendaftar");
+                System.out.println("Riset    : tidak ada pendaftar");
             }
             System.out.println();
         }
